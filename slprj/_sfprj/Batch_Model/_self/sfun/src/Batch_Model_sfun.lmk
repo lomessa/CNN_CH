@@ -1,0 +1,38 @@
+CC     = "d:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\bin\lcc64.exe"
+LD     = "d:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\bin\lcclnk64.exe"
+LIBCMD = "d:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\bin\lcclib64.exe"
+CFLAGS = -dll -noregistrylookup  -c -Zp8 -DLCC_WIN64 -DMATLAB_MEX_FILE -DMX_COMPAT_32 -nodeclspec 
+LDFLAGS = -s -dll -L"d:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\lib64" -entry LibMain -map sfun.map 
+LIBFLAGS = 
+
+OBJECTS = \
+	"Batch_Model_sfun.obj"\
+	"c2_Batch_Model.obj"\
+	"Batch_Model_sfun_registry.obj"\
+	"lccstub.obj"\
+	"Batch_Model_sfun.def"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\sf_runtime.lib"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmwblas.lib"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmx.lib"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmex.lib"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmat.lib"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libfixedpoint.lib"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libut.lib"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmwmathutil.lib"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libemlrt.lib"\
+	"d:\Program Files\MATLAB\R2014a\extern\lib\win64\microsoft\libmwsl_log_load_blocks.lib"\
+	"d:\Program Files\MATLAB\R2014a\lib\win64\libippmwipt.lib"\
+
+INCLUDE_PATH= -I"d:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\include64"  -I"d:\Program Files\MATLAB\R2014a\extern\include"  -I"d:\Program Files\MATLAB\R2014a\simulink\include"  -I"d:\Program Files\MATLAB\R2014a\stateflow\c\mex\include"  -I"d:\Program Files\MATLAB\R2014a\rtw\c\src"  -I"C:\Users\Administrator\Desktop\ANN-CH\slprj\_sfprj\Batch_Model\_self\sfun\src" 
+ 
+
+Batch_Model_sfun.mexw64 : $(MAKEFILE) $(OBJECTS)
+	$(LD) $(LDFLAGS) -o Batch_Model_sfun.mexw64 @Batch_Model_sfun.lmko
+Batch_Model_sfun.obj :	"Batch_Model_sfun.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "Batch_Model_sfun.c"
+c2_Batch_Model.obj :	"c2_Batch_Model.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c2_Batch_Model.c"
+Batch_Model_sfun_registry.obj :	"Batch_Model_sfun_registry.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "Batch_Model_sfun_registry.c"
+lccstub.obj :	"d:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\mex\lccstub.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "d:\Program Files\MATLAB\R2014a\sys\lcc64\lcc64\mex\lccstub.c"
